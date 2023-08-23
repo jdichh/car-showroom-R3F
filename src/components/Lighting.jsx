@@ -4,13 +4,18 @@ const Lighting = () => {
   return (
     <>
       <directionalLight
-        castShadow={true}
-        intensity={3}
-        position={[0, 10, 0]}
+        castShadow
+        intensity={2}
+        position={[0, 30, 0]}
         shadow-mapSize={[1024, 1024]}
-      >
-        <orthographicCamera attach="shadow-camera" args={[-10, 10, 10, -10]} />
-      </directionalLight>
+        shadow-camera-near={10}
+        shadow-camera-far={100}
+        shadow-camera-left={-50}
+        shadow-camera-right={50}
+        shadow-camera-top={50}
+        shadow-camera-bottom={-50}
+        shadow-bias={-0.0025}
+      />
     </>
   );
 };

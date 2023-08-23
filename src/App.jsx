@@ -1,10 +1,10 @@
-import React, { Suspense, useEffect, useRef } from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import Floor from "./components/Floor";
+import FloorWithErrorBoundary from "./components/Floor";
 import Lighting from "./components/Lighting";
-import Car from "./components/Car";
+import CarModelWithErrorBoundary from "./components/Car";
 
 const App = () => {
   const FOV = 35;
@@ -12,59 +12,10 @@ const App = () => {
   const FAR_CLIP = 800;
   const POSITION = [0, 2.5, 15];
 
-  const canvasRef = useRef(null);
-  const debugCam = useRef();
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-
-    const camera = new THREE.PerspectiveCamera(
-      FOV,
-      window.innerWidth / window.innerHeight,
-      NEAR_CLIP,
-      FAR_CLIP
-    );
-
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      context: canvas.getContext("webgl2"),
-      antialias: true,
-    });
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    ///// Moving these inside the render variable causes shadows and tonemapping not to work.
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.autoUpdate = true;
-    renderer.shadowMap.type = THREE.PCFShadowMap;
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
-
-    const handleResize = () => {
-      const windowSize = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
-
-      renderer.setSize(windowSize.width, windowSize.height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      camera.aspect = windowSize.width / windowSize.height;
-      camera.updateProjectionMatrix();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
-    <div id="canvas-container">
+    <div id="canvas-container" style={{ width: "100%", height: "100%" }}>
       <Canvas
-        ref={canvasRef}
+        shadows
         camera={{
           position: POSITION,
           fov: FOV,
@@ -72,13 +23,24 @@ const App = () => {
           far: FAR_CLIP,
         }}
         style={{ background: "#323232" }}
+        gl={{
+          antialias: true,
+          alpha: true,
+          shadowMap: {
+            enabled: true,
+            type: THREE.PCFSoftShadowMap,
+          },
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1,
+          dpr: Math.min(window.devicePixelRatio, 2)
+        }}
       >
         <Lighting />
         <Suspense fallback={null}>
-          <Car/>
-          <Floor />
+          <CarModelWithErrorBoundary />
+          <FloorWithErrorBoundary />
         </Suspense>
-        <OrbitControls ref={debugCam}/>
+        <OrbitControls />
       </Canvas>
     </div>
   );
