@@ -46,7 +46,7 @@ const App = () => {
           <FloorWithErrorBoundary />
           <OrbitControls
             autoRotate
-            autoRotateSpeed={0.6}
+            autoRotateSpeed={0.5}
             enablePan={false}
             enableRotate={false}
             enableZoom={false}
