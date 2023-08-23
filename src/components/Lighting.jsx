@@ -1,6 +1,5 @@
 import React from "react";
 import { SpotLight } from "@react-three/drei";
-import * as THREE from "three";
 
 const Lighting = () => {
   const WHITE = "#FFFFFF";
@@ -26,7 +25,7 @@ const Lighting = () => {
     frontSpotlightPenumbra: 1,
     frontSpotlightDistance: 40,
     frontSpotlightX: 0,
-    frontSpotlightY: 0,
+    frontSpotlightY: 1,
     frontSpotlightZ: 29,
 
     rearSpotlightColor: WHITE,
@@ -35,7 +34,7 @@ const Lighting = () => {
     rearSpotlightPenumbra: 0.65,
     rearSpotlightDistance: 40,
     rearSpotlightX: 0,
-    rearSpotlightY: 0,
+    rearSpotlightY: 1,
     rearSpotlightZ: -29,
 
     rightSpotlightColor: WHITE,
@@ -43,8 +42,8 @@ const Lighting = () => {
     rightSpotlightAngle: 1,
     rightSpotlightPenumbra: 1,
     rightSpotlightDistance: 40,
-    rightSpotlightX: 29,
-    rightSpotlightY: 0,
+    rightSpotlightX: -29,
+    rightSpotlightY: 1,
     rightSpotlightZ: 0,
 
     leftSpotlightColor: WHITE,
@@ -52,8 +51,8 @@ const Lighting = () => {
     leftSpotlightAngle: 1,
     leftSpotlightPenumbra: 1,
     leftSpotlightDistance: 40,
-    leftSpotlightX: -29,
-    leftSpotlightY: 0,
+    leftSpotlightX: 29,
+    leftSpotlightY: 1,
     leftSpotlightZ: 0,
   };
 

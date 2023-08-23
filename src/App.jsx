@@ -8,12 +8,13 @@ import CarModelWithErrorBoundary from "./components/Car";
 import UI from "./components/UI";
 import LoadingSpinner from "./components/LoadingSpinner";
 import MusicPlayer from "./components/MusicPlayer";
+import LightProps from "./components/LightProps";
 
 const App = () => {
   const FOV = 20;
   const NEAR_CLIP = 0.1;
   const FAR_CLIP = 250;
-  const POSITION = [0, 2, 25];
+  const POSITION = [0, 3, 24];
 
   return (
     <>
@@ -40,8 +41,9 @@ const App = () => {
           }}
         >
           <Lighting />
-            <CarModelWithErrorBoundary />
-            <FloorWithErrorBoundary />
+          <LightProps />
+          <CarModelWithErrorBoundary />
+          <FloorWithErrorBoundary />
           <OrbitControls
             autoRotate
             autoRotateSpeed={0.6}
@@ -51,11 +53,8 @@ const App = () => {
           />
         </Canvas>
         <UI />
-        <MusicPlayer/>
+        <MusicPlayer />
       </div>
-      <Suspense fallback={null}>
-        <LoadingSpinner/>
-      </Suspense>
     </>
   );
 };
