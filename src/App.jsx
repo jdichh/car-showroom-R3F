@@ -1,12 +1,12 @@
-import React, { Suspense } from "react";
+import React, {useEffect} from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stats } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import WebGL from "three/addons/capabilities/WebGL.js";
 import FloorWithErrorBoundary from "./components/Floor";
 import Lighting from "./components/Lighting";
 import Car from "./components/Car";
 import UI from "./components/UI";
-import LoadingSpinner from "./components/LoadingSpinner";
 import MusicPlayer from "./components/MusicPlayer";
 import LightProps from "./components/LightProps";
 
@@ -15,6 +15,13 @@ const App = () => {
   const NEAR_CLIP = 0.1;
   const FAR_CLIP = 250;
   const POSITION = [0, 3, 24];
+
+  useEffect(() => {
+    if (!WebGL.isWebGLAvailable()) {
+      const warning = WebGL.getWebGLErrorMessage();
+      document.getElementById("container").appendChild(warning);
+    }
+  });
 
   return (
     <>
