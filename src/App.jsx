@@ -7,6 +7,7 @@ import Lighting from "./components/Lighting";
 import CarModelWithErrorBoundary from "./components/Car";
 import UI from "./components/UI";
 import LoadingSpinner from "./components/LoadingSpinner";
+import MusicPlayer from "./components/MusicPlayer";
 
 const App = () => {
   const FOV = 20;
@@ -50,6 +51,7 @@ const App = () => {
           />
         </Canvas>
         <UI />
+        <MusicPlayer/>
       </div>
       <Suspense fallback={null}>
         <LoadingSpinner/>

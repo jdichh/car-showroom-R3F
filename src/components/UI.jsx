@@ -16,7 +16,7 @@ const UI = () => {
       <div id="car">
         <div id="manufacturer">
           <h2>MASERATI</h2>
-          <h1>GHIBLI</h1>
+          <h1>GHIBLI GT</h1>
           <h2>2022</h2>
         </div>
       </div>
