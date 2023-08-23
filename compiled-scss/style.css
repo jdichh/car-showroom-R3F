@@ -89,17 +89,6 @@ body {
   z-index: 0;
 }
 
-#loading-container {
-  position: absolute;
-  min-width: 100vw;
-  height: 82.5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  z-index: 1;
-}
-
 #loading-spinner {
   display: inline-block;
   position: relative;
@@ -402,9 +391,6 @@ h1 {
   }
 }
 @media (max-width: 1766px) {
-  #loading-container {
-    height: 75vh;
-  }
   #car-details {
     height: 25vh;
   }
@@ -419,9 +405,6 @@ h1 {
   }
 }
 @media (max-width: 1350px) {
-  #loading-container {
-    height: 71vh;
-  }
   #car-details {
     height: 29vh;
   }
@@ -443,9 +426,6 @@ h1 {
   }
   #manufacturer h1 {
     font-size: 5.9rem;
-  }
-  #loading-container {
-    height: 52vh;
   }
   #car {
     top: 26.5vh;

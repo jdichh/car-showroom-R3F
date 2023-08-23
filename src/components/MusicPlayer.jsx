@@ -69,6 +69,11 @@ const MusicPlayer = () => {
   }
 
   function toggleMusic() {
+    if (isMusicPlaying) {
+      playNextTrack();
+    } else if (audio) {
+      audio.play();
+    }
     setIsMusicPlaying(!isMusicPlaying);
   }
 
