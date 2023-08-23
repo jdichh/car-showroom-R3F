@@ -1,0 +1,76 @@
+@use "../global/typography";
+
+#car-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 17.5vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(7px);
+  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  padding-top: 1rem;
+  column-gap: 1rem;
+  padding-inline: 3.7rem;
+}
+
+#car-details {
+  align-content: start;
+  font-family: 'Poppins', sans-serif;
+}
+
+#car-details p {
+  font-size: 20px;
+}
+
+#car-class {
+  position: absolute;
+  bottom: 28vh;
+  right: 3vw;
+  padding: 0.3rem 1.2rem;
+  outline: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3%;
+  font-family: 'Poppins', sans-serif;
+}
+
+#car-class p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#car-price {
+  position: absolute;
+  bottom: 19vh;
+  right: 3vw;
+}
+
+.currency {
+  font-size: 2rem;
+}
+
+#car-price p {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#detail,
+#detail-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  font-size: 1.15rem;
+}
+
+#detail {
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+#detail-number p {
+  color: rgba(255, 255, 255, 0.9);
+}

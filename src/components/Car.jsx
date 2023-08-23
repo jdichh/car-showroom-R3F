@@ -21,7 +21,6 @@ const LARGER_SCALE = {
   scale: 2.25,
 }
 
-
 const Car = () => {
   const gltf = useLoader(GLTFLoader, "/cars/maserati_ghibli.glb");
   const carModel = gltf.scene.clone();

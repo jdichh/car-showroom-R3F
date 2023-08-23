@@ -5,6 +5,8 @@ import * as THREE from "three";
 import FloorWithErrorBoundary from "./components/Floor";
 import Lighting from "./components/Lighting";
 import CarModelWithErrorBoundary from "./components/Car";
+import UI from "./components/UI";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const App = () => {
   const FOV = 20;
@@ -13,41 +15,46 @@ const App = () => {
   const POSITION = [0, 2, 25];
 
   return (
-    
-
-    <div id="canvas-container">
-      <Canvas
-        shadows
-        camera={{
-          position: POSITION,
-          fov: FOV,
-          near: NEAR_CLIP,
-          far: FAR_CLIP,
-        }}
-        style={{ background: "#060606" }}
-        gl={{
-          antialias: true,
-          alpha: true,
-          shadowMap: {
-            enabled: true,
-            type: THREE.PCFSoftShadowMap,
-          },
-          toneMapping: THREE.LinearToneMapping,
-          toneMappingExposure: 2.5,
-          dpr: Math.min(window.devicePixelRatio, 2),
-        }}
-      >
-        <Lighting />
-        <Suspense fallback={null}>
-          <CarModelWithErrorBoundary />
-          <FloorWithErrorBoundary />
-        </Suspense>
-        <OrbitControls autoRotate autoRotateSpeed={0.6} enablePan={false} enableRotate={false} enableZoom={false}/>
-        {/* <OrbitControls/> */}
-        <Stats showPanel={0}/>
-        <Stats showPanel={1}/>
-      </Canvas>
-    </div>
+    <>
+      <div id="canvas-container">
+        <Canvas
+          shadows
+          camera={{
+            position: POSITION,
+            fov: FOV,
+            near: NEAR_CLIP,
+            far: FAR_CLIP,
+          }}
+          style={{ background: "#060606" }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            shadowMap: {
+              enabled: true,
+              type: THREE.PCFSoftShadowMap,
+            },
+            toneMapping: THREE.LinearToneMapping,
+            toneMappingExposure: 2.5,
+            dpr: Math.min(window.devicePixelRatio, 2),
+          }}
+        >
+          <Lighting />
+            <CarModelWithErrorBoundary />
+            <FloorWithErrorBoundary />
+          <OrbitControls
+            autoRotate
+            autoRotateSpeed={0.6}
+            enablePan={false}
+            enableRotate={false}
+            enableZoom={false}
+          />
+        </Canvas>
+        <UI />
+      </div>
+      <Suspense fallback={null}>
+        <LoadingSpinner/>
+      </Suspense>
+    </>
   );
 };
 
