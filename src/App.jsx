@@ -1,19 +1,27 @@
 import React, { Suspense, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import Floor from "./components/Floor";
 
+const FOV = 40;
+const NEAR_CLIP = 0.1;
+const FAR_CLIP = 800;
+const POSITION = [0, 40, 175]
+
 const App = () => {
   const canvasRef = useRef(null);
+  const debugCam = useRef();
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const devCam = debugCam.current;
 
     const camera = new THREE.PerspectiveCamera(
-      15,
+      FOV,
       window.innerWidth / window.innerHeight,
-      0.1,
-      250
+      NEAR_CLIP,
+      FAR_CLIP
     );
 
     const renderer = new THREE.WebGLRenderer({
@@ -45,9 +53,10 @@ const App = () => {
     <div id="canvas-container">
       <Canvas
         ref={canvasRef}
-        camera={{ position:[0, 10, 60], fov: 30, near: 0.1, far: 250 }}
+        camera={{ position: POSITION, fov: FOV, near: NEAR_CLIP, far: FAR_CLIP }}
         style={{ background: "#323232" }}
       >
+        
         <directionalLight
           castShadow
           position={[0, 10, 0]}
@@ -63,6 +72,7 @@ const App = () => {
         <Suspense fallback={null}>
           <Floor />
         </Suspense>
+        <OrbitControls ref={debugCam}/>
       </Canvas>
     </div>
   );
