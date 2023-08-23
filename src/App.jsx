@@ -3,19 +3,20 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import Floor from "./components/Floor";
-
-const FOV = 40;
-const NEAR_CLIP = 0.1;
-const FAR_CLIP = 800;
-const POSITION = [0, 40, 175]
+import Lighting from "./components/Lighting";
+import Car from "./components/Car";
 
 const App = () => {
+  const FOV = 35;
+  const NEAR_CLIP = 0.1;
+  const FAR_CLIP = 800;
+  const POSITION = [0, 2.5, 15];
+
   const canvasRef = useRef(null);
   const debugCam = useRef();
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const devCam = debugCam.current;
 
     const camera = new THREE.PerspectiveCamera(
       FOV,
@@ -29,6 +30,17 @@ const App = () => {
       context: canvas.getContext("webgl2"),
       antialias: true,
     });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    ///// Moving these inside the render variable causes shadows and tonemapping not to work.
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.autoUpdate = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
 
     const handleResize = () => {
       const windowSize = {
@@ -53,23 +65,17 @@ const App = () => {
     <div id="canvas-container">
       <Canvas
         ref={canvasRef}
-        camera={{ position: POSITION, fov: FOV, near: NEAR_CLIP, far: FAR_CLIP }}
+        camera={{
+          position: POSITION,
+          fov: FOV,
+          near: NEAR_CLIP,
+          far: FAR_CLIP,
+        }}
         style={{ background: "#323232" }}
       >
-        
-        <directionalLight
-          castShadow
-          position={[0, 10, 0]}
-          intensity={1.5}
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-          shadow-camera-far={50}
-          shadow-camera-left={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={10}
-          shadow-camera-bottom={-10}
-        />
+        <Lighting />
         <Suspense fallback={null}>
+          <Car/>
           <Floor />
         </Suspense>
         <OrbitControls ref={debugCam}/>

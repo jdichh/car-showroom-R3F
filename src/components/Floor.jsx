@@ -37,7 +37,7 @@ export default function Floor() {
     <mesh
       geometry={geometry}
       material={material}
-      receiveShadow
+      receiveShadow={true}
       rotation-x={-Math.PI / 2}
       position-y={-0.8}
     />
