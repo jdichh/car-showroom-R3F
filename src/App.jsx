@@ -4,7 +4,7 @@ import { OrbitControls, Stats } from "@react-three/drei";
 import * as THREE from "three";
 import FloorWithErrorBoundary from "./components/Floor";
 import Lighting from "./components/Lighting";
-import CarModelWithErrorBoundary from "./components/Car";
+import Car from "./components/Car";
 import UI from "./components/UI";
 import LoadingSpinner from "./components/LoadingSpinner";
 import MusicPlayer from "./components/MusicPlayer";
@@ -42,7 +42,7 @@ const App = () => {
         >
           <Lighting />
           <LightProps />
-          <CarModelWithErrorBoundary />
+          <Car/>
           <FloorWithErrorBoundary />
           <OrbitControls
             autoRotate

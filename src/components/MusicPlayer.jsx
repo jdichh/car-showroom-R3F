@@ -22,7 +22,7 @@ const MusicPlayer = () => {
     const newAudio = new Audio();
     newAudio.src = musicFiles[currentMusicIndex];
     newAudio.preload = "auto";
-    newAudio.loop = true;
+    newAudio.loop = false;
     newAudio.volume = volume;
     // newAudio.playbackRate = 3.5;
 

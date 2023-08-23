@@ -8,9 +8,10 @@ const DEFAULT = {
   x_axis: 0,
   y_axis: -0.75,
   z_axis: 0,
+  y_rotation: -0.75
 };
 
-const LARGER_SCALE = {
+const GHIBLI = {
   scale: 2.25,
 };
 
@@ -53,8 +54,8 @@ const Car = () => {
     <primitive
       object={model}
       position={[DEFAULT.x_axis, DEFAULT.y_axis, DEFAULT.z_axis]}
-      rotation={[0, -0.75, 0]}
-      scale={[LARGER_SCALE.scale, LARGER_SCALE.scale, LARGER_SCALE.scale]}
+      rotation={[0, DEFAULT.y_rotation, 0]}
+      scale={[GHIBLI.scale, GHIBLI.scale, GHIBLI.scale]}
       castShadow={true}
       receiveShadow={true}
     />
