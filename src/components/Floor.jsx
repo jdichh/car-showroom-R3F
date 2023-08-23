@@ -4,27 +4,28 @@ import * as THREE from "three";
 import { ErrorBoundary } from "react-error-boundary";
 
 const Floor = () => {
-  const [colorMap, displacementMap, normalMap, aoMap] = useLoader(
+  const [colorMap, displacementMap, normalMap, aoMap, roughnessMap] = useLoader(
     TextureLoader,
     [
-      "./floor/concrete1k/Concrete042A_1K_Color.png",
-      "./floor/concrete1k/Concrete042A_1K_Displacement.png",
-      "./floor/concrete1k/Concrete042A_1K_NormalGL.png",
-      "./floor/concrete1k/Concrete042A_1K_AmbientOcclusion.png",
+      "./floor/concrete2_1k/Concrete032_1K_Color.png",
+      "./floor/concrete2_1k/Concrete032_1K_Displacement.png",
+      "./floor/concrete2_1k/Concrete032_1K_NormalGL.png",
+      "./floor/concrete2_1k/Concrete032_1K_AmbientOcclusion.png",
+      "./floor/concrete2_1k/Concrete032_1K_Roughness.png",
     ]
   );
 
-  const TEX_SCALE = 15;
+  const TEX_SCALE = 25;
   const PLANE_WIDTH = 225;
   const PLANE_HEIGHT = 225;
 
-  [colorMap, displacementMap, normalMap, aoMap].forEach((tex) => {
+  [colorMap, displacementMap, normalMap, aoMap, roughnessMap].forEach((tex) => {
     tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
     tex.repeat.set(TEX_SCALE, TEX_SCALE);
   });
 
   const geometry = new THREE.PlaneGeometry(PLANE_WIDTH, PLANE_HEIGHT);
-  const material = new THREE.MeshLambertMaterial({
+  const material = new THREE.MeshPhysicalMaterial({
     map: colorMap,
     displacementMap: displacementMap,
     displacementScale: 0.1,
@@ -32,6 +33,8 @@ const Floor = () => {
     normalMapType: THREE.TangentSpaceNormalMap,
     aoMap: aoMap,
     aoMapIntensity: 1,
+    roughnessMap: roughnessMap,
+    roughness: 1
   });
 
   return (

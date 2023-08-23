@@ -1,19 +1,21 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Stats } from "@react-three/drei";
 import * as THREE from "three";
 import FloorWithErrorBoundary from "./components/Floor";
 import Lighting from "./components/Lighting";
 import CarModelWithErrorBoundary from "./components/Car";
 
 const App = () => {
-  const FOV = 35;
+  const FOV = 20;
   const NEAR_CLIP = 0.1;
-  const FAR_CLIP = 800;
-  const POSITION = [0, 2.5, 15];
+  const FAR_CLIP = 250;
+  const POSITION = [0, 2, 25];
 
   return (
-    <div id="canvas-container" style={{ width: "100%", height: "100%" }}>
+    
+
+    <div id="canvas-container">
       <Canvas
         shadows
         camera={{
@@ -22,7 +24,7 @@ const App = () => {
           near: NEAR_CLIP,
           far: FAR_CLIP,
         }}
-        style={{ background: "#323232" }}
+        style={{ background: "#060606" }}
         gl={{
           antialias: true,
           alpha: true,
@@ -30,9 +32,9 @@ const App = () => {
             enabled: true,
             type: THREE.PCFSoftShadowMap,
           },
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1,
-          dpr: Math.min(window.devicePixelRatio, 2)
+          toneMapping: THREE.LinearToneMapping,
+          toneMappingExposure: 2.5,
+          dpr: Math.min(window.devicePixelRatio, 2),
         }}
       >
         <Lighting />
@@ -40,7 +42,10 @@ const App = () => {
           <CarModelWithErrorBoundary />
           <FloorWithErrorBoundary />
         </Suspense>
-        <OrbitControls />
+        <OrbitControls autoRotate autoRotateSpeed={0.6} enablePan={false} enableRotate={false} enableZoom={false}/>
+        {/* <OrbitControls/> */}
+        <Stats showPanel={0}/>
+        <Stats showPanel={1}/>
       </Canvas>
     </div>
   );

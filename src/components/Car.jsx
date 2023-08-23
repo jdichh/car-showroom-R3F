@@ -1,13 +1,29 @@
 import React, {useEffect} from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import * as THREE from 'three'
 import { ErrorBoundary } from "react-error-boundary";
 
+const DEFAULT = {
+  scale: 1,
+  x_axis: 0,
+  y_axis: -0.75,
+  z_axis: 0
+}
+
+const NSX = {
+  scale: 3.75,
+  x_axis: 2,
+  y_axis: -2.66,
+  z_axis: -2.55
+}
+
+const LARGER_SCALE = {
+  scale: 2.25,
+}
+
+
 const Car = () => {
-  const CAR_SCALE = 1.5;
-  const CAR_Y_AXIS = -0.7;
-  const gltf = useLoader(GLTFLoader, "/cars/toy_sup_red.glb");
+  const gltf = useLoader(GLTFLoader, "/cars/maserati_ghibli.glb");
   const carModel = gltf.scene.clone();
 
   useEffect(() => {
@@ -22,10 +38,11 @@ const Car = () => {
   return (
     <primitive
       object={carModel}
-      position={[0, CAR_Y_AXIS, 0]}
-      scale={[CAR_SCALE, CAR_SCALE, CAR_SCALE]}
-      castShadow
-      receiveShadow
+      position={[DEFAULT.x_axis, DEFAULT.y_axis, DEFAULT.z_axis]}
+      rotation={[0, -0.75, 0]}
+      scale={[LARGER_SCALE.scale, LARGER_SCALE.scale, LARGER_SCALE.scale]}
+      castShadow={true}
+      receiveShadow={true}
     />
   );
 };
