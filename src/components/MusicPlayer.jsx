@@ -93,7 +93,7 @@ const MusicPlayer = () => {
 
   return (
     <div>
-      <button id="music-toggle-button" onClick={toggleMusic}>
+      <button id="music-toggle-button" onClick={toggleMusic} aria-label="Music toggle button">
         <i
           className={isMusicPlaying ? "fas fa-stop fa-sm" : "fas fa-play fa-sm"}
         ></i>
@@ -102,11 +102,13 @@ const MusicPlayer = () => {
         id="volume-up-button"
         className="fas fa-plus fa-sm"
         onClick={increaseVolume}
+        aria-label="Volume up button"
       ></button>
       <button
         id="volume-down-button"
         className="fas fa-minus fa-sm"
         onClick={decreaseVolume}
+        aria-label="Volume down button"
       ></button>
     </div>
   );
