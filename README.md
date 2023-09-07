@@ -6,7 +6,7 @@
 ## Challenges Faced
 <ul>
  <li>Improve performance in general; reducing shadow resolutions, finding car models that look high poly even with low poly count, etc.</li>
- <li>Recreating the [UI](https://www.youtube.com/watch?v=33V07p2gOxk&t=35) from the game.</li>
+ <li>Recreating the UI from the game.</li>
 </ul>
 
 ### Checklist
