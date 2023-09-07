@@ -15,3 +15,15 @@
   <li>Earn money to buy HQ 3D models</li>
   <li>Improve shadows</li>
 </ul>
+
+
+## Project setup
+If you want to try this out for yourself, download the source code, and run these lines of code.
+```
+pnpm install
+```
+
+### Compiles and hot-reloads for development
+```
+pnpm run dev
+```
