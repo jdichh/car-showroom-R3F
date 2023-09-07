@@ -1,5 +1,5 @@
 ﻿# Gran Turismo Sport Inspired Car Showroom Scene.
- A car showroom mainly inspired by the one in Gran Turismo Sport. 
+ A car showroom mainly inspired by the one in Gran Turismo Sport, and made with React-Three-Fiber. 
 
  The old version made with Three.js only can be found [here.](https://github.com/jdichh/car-showroom)
 
