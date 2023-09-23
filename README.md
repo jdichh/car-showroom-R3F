@@ -3,6 +3,8 @@
 
  The old version made with Three.js only can be found [here.](https://github.com/jdichh/car-showroom)
 
+ If you're interested in the development footage, here is a [Drive folder](https://drive.google.com/drive/folders/1wxP8FM63t-DFlsGL2M6aUYAoZJhQAfOO?usp=sharing) for it.
+
 ## Challenges Faced
 <ul>
  <li>Improve performance in general; reducing shadow resolutions, finding car models that look high poly even with low poly count, etc.</li>
